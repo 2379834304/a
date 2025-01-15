@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传文件</title>
+</head>
+<body>
+    <h1>上传 Excel 文件</h1>
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <label for="file">选择文件：</label>
+        <input type="file" name="file" multiple>
+        <button type="submit" name="resource" value="true">上传资源</button>
+        <button type="submit" name="asset" value="true">上传资产</button>
+
+    </form>
+    <h2>清除缓存</h2>
+    <form action="/clear_cache" method="POST">
+        <button type="submit">清除缓存</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传结果</title>
+</head>
+<body>
+    <h1>文件上传结果</h1>
+
+    {% if invalid_files %}
+        <h2>上传的文件存在问题：</h2>
+        <ul>
+            {% for file in invalid_files %}
+                <li><strong>{{ file.filename }}</strong>:
+                    {% if file.invalid_c %}
+                        <p>资源信息表中C列不符合的值:</p>
+                        <ul>
+                            {% for item in file.invalid_c %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% if file.invalid_d %}
+                        <p>资源信息表中D列不符合的值:</p>
+                        <ul>
+                            {% for item in file.invalid_d %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% if file.invalid_k %}
+                        <p>资源信息表中K列不符合“未承包到户”的值:</p>
+                        <ul>
+                            {% for item in file.invalid_k %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if file.invalid_data %}
+                        <p>资产导入模板存在以下问题:</p>
+                        <ul>
+                            {% if file.invalid_data.invalid_b %}
+                                <li>在B列中以下值不在数据字典A2-A3中:
+                                    <ul>
+                                        {% for item in file.invalid_data.invalid_b %}
+                                            <li>{{ item }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            {% if file.invalid_data.invalid_c %}
+                                <li>在C列中以下值不在数据字典A6-A11中:
+                                    <ul>
+                                        {% for item in file.invalid_data.invalid_c %}
+                                            <li>{{ item }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            {% if file.invalid_data.invalid_d %}
+                                <li>在D列中以下值不在数据字典A14-A18中:
+                                    <ul>
+                                        {% for item in file.invalid_data.invalid_d %}
+                                            <li>{{ item }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            {% if file.invalid_data.invalid_f %}
+                                <li>在F列中以下值不在数据字典A14-A18中:
+                                    <ul>
+                                        {% for item in file.invalid_data.invalid_f %}
+                                            <li>{{ item }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            {% if file.invalid_data.invalid_n %}
+                                <li>在N列中以下值不在科目信息A3-A43中:
+                                    <ul>
+                                        {% for item in file.invalid_data.invalid_n %}
+                                            <li>{{ item }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            {% if file.invalid_data.invalid_y %}
+
+                                <li>资源信息表中Y列属于扶贫资产的值:
+                                    <ul>
+                                        {% for item in file.invalid_data.invalid_y %}
+                                            <li>{{ item }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            {% if file.invalid_data.invalid_date %}
+                                <li>以下日期格式不符合 yyyy-mm-dd:
+                                    <ul>
+                                        {% for item in file.invalid_data.invalid_date %}
+                                            <li>{{ item }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>所有文件均符合要求。</p>
+    {% endif %}
+
+    <br>
+    <a href="/">返回上传页面</a>
+</body>
+</html>

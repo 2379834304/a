@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shapefile CRS 转换</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="file"],
+        input[type="number"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shapefile CRS 转换</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">上传 Shapefile 文件（多个文件）：</label>
+        <input type="file" name="file" accept=".shp,.shx,.dbf,.prj" multiple required><br><br>
+
+        <label for="epsg_input">输入 EPSG 代码（当前 CRS）：</label>
+        <input type="number" name="epsg_input" placeholder="例如：2000" required><br><br>
+
+        <label for="epsg_output">输出 EPSG 代码（目标 CRS）：</label>
+        <input type="number" name="epsg_output" placeholder="例如：4527" required><br><br>
+
+        <button type="submit">上传并转换</button>
+    </form>
+</body>
+</html>
